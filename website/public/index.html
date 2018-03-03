@@ -1,43 +1,37 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link rel = "stylesheet" href = "css/index.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Ratatouille my Kitchen!</title>
-  </head>
+    <head>
+        <title>Robotouille my Kitchen!</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Stylesheets -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link rel = "stylesheet" href = "css/index.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
 
   <body>
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <h1>Ratatouille</h1>
-        </nav>
-    </header>
-    <main>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Robotouille</a>
+    </nav>
+
+    <main role="main" class="container">
+        <p>Enter a recipe URL for Robotouille to guide you through.</p>
         <form>
             <div class="form-group">
-                <label for="recipeLink"></label>
-                <input type="text" class="form-control" id="recipeLinkBox" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <label for="recipeLink">Recipe Link</label>
+                <input type="text" class="form-control" id="recipeLinkBox" aria-describedby="re" placeholder="Enter recipe link ...">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </main>
-    <footer>
-        <small>Created by Intel interns for hacktech</small>
+
+    <footer class="footer">
+        <div class="container">
+            <small class="text-muted">Created by Intel interns for Hacktech, Pasadena, Los Angeles.</small>
+        </div>
     </footer>
 
     <!-- Optional JavaScript -->
