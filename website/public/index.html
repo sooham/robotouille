@@ -13,22 +13,39 @@
     </head>
 
   <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav id="topLevelNavbar" class="navbar navbar-expand-sm navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Robotouille</a>
     </nav>
 
     <main role="main" class="container">
-        <p>Enter a recipe URL for Robotouille to guide you through.</p>
-        <form>
-            <div class="form-group">
-                <label for="recipeLink">Recipe Link</label>
-                <input type="text" class="form-control" id="recipeLinkBox" aria-describedby="re" placeholder="Enter recipe link ...">
+        <div class="appDescription row">
+            <div class="col">
+                <div>
+                    <h4>Welcome to your personal cooking assistant, <code>Robotouille</code>!</h4>
+                </div>
+                <div>
+                    <img id="mainLogo" src="static/robotouille-logo.jpg" style="width: 120px"/>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="col-8">
+                <p>Robotouille allows hands and screen free cooking while following recipe instructions. This is done by leveraging recent advances in voice recognition and natural language processing. In other words <code>Robotouille</code> can just read out your recipe to you.</p>
+                <p>Using <code>Robotouille</code> allows the chef to immerse themselves into their process and cook worry free. Additional benefits include:</p>
+                <ol>
+                    <li>Follows voice commands - just talk to it like another human.</li>
+                    <li>Works with any recipe link.</li>
+                    <li>Intelligently guides you through recipe step-by-step.</li>
+                    <li>Tracks and alerts user to timed cooking steps.</li>
+                </ol>
+            </div>
+        </div>
+        <form action="/recipeLinkSubmit.js" method="post">
+            <label for="recipeLink" class="mb-2 mr-sm-2">Recipe Link:</label>
+            <input type="text" name="recipeLink" class="form-control mb-2 mr-sm-2" id="recipeLinkInput" placeholder="https://recipe.com/link/to/recipe">
+            <button type="submit" class="btn btn-primary mb-2">Follow Recipe</button>
         </form>
     </main>
 
-    <footer class="footer">
+    <footer class="footer creditsFooter">
         <div class="container">
             <small class="text-muted">Created by Intel interns for Hacktech, Pasadena, Los Angeles.</small>
         </div>

@@ -1,0 +1,29 @@
+/*
+.recipeLinkLabel {
+    display: inline; 
+}
+
+#recipeLinkBox {
+    display: inline;
+    width: 60%;
+}
+*/
+
+#topLevelNavbar {
+    margin: 0.8rem 0.5rem 2.2rem 0.5rem;
+}
+
+#mainLogo {
+    margin-left: 10%;
+}
+
+.appDescription {
+    margin-bottom: 3em;
+}
+
+.creditsFooter {
+    width: 100%;
+    bottom: 0%;
+    position: fixed;
+    text-align: center;
+}
