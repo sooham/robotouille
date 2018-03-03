@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Stylesheets -->
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <link rel = "stylesheet" href = "css/index.css">
+        <link rel = "stylesheet" href = "{{ url_for('static', filename='css/index.css') }}">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
@@ -24,7 +24,8 @@
                     <h4>Welcome to your personal cooking assistant, <code>Robotouille</code>!</h4>
                 </div>
                 <div>
-                    <img id="mainLogo" src="static/robotouille-logo.jpg" style="width: 120px"/>
+                    <img id="mainLogo" src="
+                    {{ url_for('static', filename='img/robotouille-logo.jpg') }}" style="width: 120px"/>
                 </div>
             </div>
             <div class="col-8">
@@ -38,7 +39,7 @@
                 </ol>
             </div>
         </div>
-        <form action="/recipeLinkSubmit.js" method="post">
+        <form action="/recipeLink" method="post">
             <label for="recipeLink" class="mb-2 mr-sm-2">Recipe Link:</label>
             <input type="text" name="recipeLink" class="form-control mb-2 mr-sm-2" id="recipeLinkInput" placeholder="https://recipe.com/link/to/recipe">
             <button type="submit" class="btn btn-primary mb-2">Follow Recipe</button>
