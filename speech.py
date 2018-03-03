@@ -5,7 +5,7 @@ from pprint import pprint
 
 
 
-### reading recepie
+### reading recepe
 
 with open('response.json') as data_file:    
     data = json.load(data_file)

@@ -25,7 +25,7 @@ class Microsoft_ASR():
         print "Got Token: ", self.token
         return True
 
-    def transcribe(self,speech_file):
+    def transcribe(self, speech_file):
 
         # Grab the token if we need it
         if self.token is None:
