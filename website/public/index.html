@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Robotouille my Kitchen!</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Stylesheets -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link rel = "stylesheet" href = "css/index.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+  <body>
+    <nav id="topLevelNavbar" class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Robotouille</a>
+    </nav>
+
+    <main role="main" class="container">
+        <div class="appDescription row">
+            <div class="col">
+                <div>
+                    <h4>Welcome to your personal cooking assistant, <code>Robotouille</code>!</h4>
+                </div>
+                <div>
+                    <img id="mainLogo" src="static/robotouille-logo.jpg" style="width: 120px"/>
+                </div>
+            </div>
+            <div class="col-8">
+                <p>Robotouille allows hands and screen free cooking while following recipe instructions. This is done by leveraging recent advances in voice recognition and natural language processing. In other words <code>Robotouille</code> can just read out your recipe to you.</p>
+                <p>Using <code>Robotouille</code> allows the chef to immerse themselves into their process and cook worry free. Additional benefits include:</p>
+                <ol>
+                    <li>Follows voice commands - just talk to it like another human.</li>
+                    <li>Works with any recipe link.</li>
+                    <li>Intelligently guides you through recipe step-by-step.</li>
+                    <li>Tracks and alerts user to timed cooking steps.</li>
+                </ol>
+            </div>
+        </div>
+        <form action="/recipeLinkSubmit.js" method="post">
+            <label for="recipeLink" class="mb-2 mr-sm-2">Recipe Link:</label>
+            <input type="text" name="recipeLink" class="form-control mb-2 mr-sm-2" id="recipeLinkInput" placeholder="https://recipe.com/link/to/recipe">
+            <button type="submit" class="btn btn-primary mb-2">Follow Recipe</button>
+        </form>
+    </main>
+
+    <footer class="footer creditsFooter">
+        <div class="container">
+            <small class="text-muted">Created by Intel interns for Hacktech, Pasadena, Los Angeles.</small>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
