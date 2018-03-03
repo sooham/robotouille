@@ -17,7 +17,7 @@ API_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/ex
 def index():
     return render_template("index.html")
 
-@app.route("/recipeLink")
+@app.route("/recipe")
 def process_recipe():
     recipe_url = urllib.quote(request.args.get('recipeLink'), safe='')
     headers = {"X-Mashape-Key" : "e3LHtLGp7Smshyw7E0qaeCjHiuR3p1DczjljsnvW3aq1XYuWyz"}
