@@ -8,6 +8,7 @@
         <!-- Stylesheets -->
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel = "stylesheet" href = "{{ url_for('static', filename='css/index.css') }}">
+        <link rel="stylesheet" type="text/css" href="">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Font Awesome -->
@@ -15,12 +16,22 @@
     </head>
 
   <body>
-    <audio class="hidden" id="wav_filelist">
-        {% for file in wav_files %}
-            <source src="{{url_for('static', filename='wav/' + file)}}">
-        {% endfor %}
-    </audio>
-    <div id="loadingModal">
+    <div class="hidden" id="audio_box">
+        <audio class="hidden" id="misc_ing_start"> <source src="{{url_for('static', filename='wav/misc/ing_start.wav')}}">
+        <audio class="hidden" id="misc_ing_end"> <source src="{{url_for('static', filename='wav/misc/ing_end.wav')}}">
+        <audio class="hidden" id="misc_step_start"> <source src="{{url_for('static', filename='wav/misc/start_steps.wav')}}">
+        <audio class="hidden" id="misc_prompt_next"> <source src="{{url_for('static', filename='wav/misc/prompt_next.wav')}}">
+        <audio class="hidden" id="misc_repeat_last_step"> <source src="{{url_for('static', filename='wav/misc/repeat_last_step_alert.wav')}}">
+        <audio class="hidden" id="misc_misheard"> <source src="{{url_for('static', filename='wav/misc/misheard.wav')}}">
+        <audio class="hidden" id="misc_finish"> <source src="{{url_for('static', filename='wav/misc/finish_recipe.wav')}}"> </audio>
+    {% for file in wav_files %}
+        <audio class="hidden" id="{{file}}">
+            <source src="{{url_for('static', filename='wav/' + recipe_id + '/' + file + '.wav')}}">
+        </audio>
+    {% endfor %}
+    </div>
+
+    <div id="loadingModal" class="hidden">
         <i class="fas fa-spinner fa-3x fa-spin"></i>
         <i class="fas fa-step-forward fa-3x"></i>
         <i class="fas fa-step-backward fa-3x"></i>
@@ -55,12 +66,24 @@
                 </div>
                 {% endif %}
 
+                <!-- the ingredients card -->
+                <div class="card ingCard bg-primary text-dark">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Ingredients Required</h4>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for ing in ing_pos %}
+                            <li class="list-group-item">{{ing}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
                 {% for step in recipe_steps%}
                 <div class="card stepCard">
                     <div class="card-header">
-                        Step {{step.number}}
+                        <h4>Step {{step.number}}</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="s_{{step.number}}">
                         <!--
                         <h5 class="card-title">Another title</h5>
                     -->
@@ -88,10 +111,11 @@
         </div>
     </footer>
 
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- personal javascript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/speechController.js') }}"></script>
   </body>
 </html>

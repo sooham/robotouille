@@ -1,6 +1,7 @@
 import os
 import errno
 import lxml
+import pdb
 
 from bingtts import Translator
 from urlparse import urlparse
@@ -26,8 +27,7 @@ def get_steps(recipe_json):
 def get_ingredients(recipe_json):
     ing_raw = recipe_json['extendedIngredients']
     ing_pos = [ing['originalString'] for ing in ing_raw]
-    ing_parts = [(ing['name'], ing['amount'], ing['units']) for ing in ing_raw]
-    return ing_pos, ing_parts
+    return ing_pos
 
 def get_total_time(recipe_json):
     return recipe_json['readyInMinutes'] if 'readyInMinutes' in recipe_json else None
@@ -40,21 +40,22 @@ def create_template_kwargs(recipe_url, recipe_json):
     kwargs['recipe_steps'] = get_steps(recipe_json)
     kwargs['image'] = get_image(recipe_json)
     kwargs['total_time'] = get_total_time(recipe_json)
-    kwargs['ing_pos'], kwargs['ing_parts'] = get_ingredients(recipe_json)
+    kwargs['ing_pos'] = get_ingredients(recipe_json)
     return kwargs
 
 def synthesize_speech(recipe_id, steps_json, ing_pos):
-    tts = Translator('50dbceaa8a424c1c89ea9c33d3a4eec0')
-    speech_text = [step_raw['step'] for step_raw in steps_json]
-    # TODO: optimize speech
-    speech_bin = [tts.speak(step_raw, "en-US", "Female", "riff-16khz-16bit-mono-pcm") for step_raw in speech_text]
-    ing_bin = [tts.speak(ing_raw, "en-US", "Female", "riff-16khz-16bit-mono-pcm") for ing_raw in ing_pos]
-
     # TODO: Do unhardcode path, it is relative to calling PWD
     wav_root = "./website/static/wav/"
-    # create the recipe ID holding the recipe wave files
 
     if not os.path.exists(wav_root + recipe_id):
+        tts = Translator('50dbceaa8a424c1c89ea9c33d3a4eec0')
+        speech_text = [step_raw['step'] for step_raw in steps_json]
+        # TODO: optimize speech
+        speech_bin = [tts.speak(step_raw, "en-US", "Female", "riff-16khz-16bit-mono-pcm") for step_raw in speech_text]
+        ing_bin = [tts.speak(ing_raw, "en-US", "Female", "riff-16khz-16bit-mono-pcm") for ing_raw in ing_pos]
+
+        # create the recipe ID holding the recipe wave files
+
         try:
             print('creating folder ' + wav_root + recipe_id)
             os.makedirs(wav_root + recipe_id)
@@ -65,20 +66,20 @@ def synthesize_speech(recipe_id, steps_json, ing_pos):
         wav_list = []
 
         for ing_num in xrange(len(ing_pos)):
-            fname = 'ing_%d.wav' % ing_num
-            wav_list.append('%s/%s' % (recipe_id, fname))
-            with open("%s%s/%s.wav" % (wav_root, recipe_id, fname)):
+            fname = 'ing_%d' % ing_num
+            wav_list.append('%s' % fname)
+            with open("%s%s/%s.wav" % (wav_root, recipe_id, fname), 'w') as f:
                 f.write(ing_bin[ing_num])
 
         for step in xrange(len(speech_text)):
-            fname = 'step_%s.wav' % str(step)
-            wav_list.append('%s/%s' % (recipe_id, fname))
+            fname = 'step_%d' % step
+            wav_list.append('%s' % fname)
             with open("%s%s/%s.wav" % (wav_root, recipe_id, fname), 'w') as f:
                 f.write(speech_bin[step])
 
         return wav_list
     else:
-        return
+        return [file[:-4] for file in os.listdir('%s%s' % (wav_root, recipe_id)) if file.endswith(".wav")]
 
 
 

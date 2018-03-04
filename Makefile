@@ -1,5 +1,5 @@
 FLASK_APP="$(shell pwd)/website/server.py"
-FLASK_DEBUG=1
+FLASK_DEBUG=0
 
 all: setup run
 

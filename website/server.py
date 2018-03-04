@@ -28,6 +28,7 @@ def process_recipe():
 
     # create the team input kwargs
     kwargs = utils.create_template_kwargs(recipe_url, recipe_json)
+    kwargs['recipe_id'] = str(recipe_json['id'])
 
     # synthesize recipe steps using bing text to speech API
     kwargs['wav_files'] = utils.synthesize_speech(str(recipe_json['id']), kwargs['recipe_steps'], kwargs['ing_pos'])

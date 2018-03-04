@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Speech Sample</title>
-    <meta charset="utf-8" />
+    <title></title>
 </head>
-<body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px;">
-    <div id="warning">
-        <h1 style="font-weight:500;">Speech Recognition SDK not found.</h1>
-        <h2 style="font-weight:500;">Please execute <code>npm run bundle</code> and reload.</h2>
-    </div>
+<body >
     <div id="content" style="display:none">
         <table width="100%">
-            <tr>
-                <td></td>
-                <td>
-                    <h1 style="font-weight:500;">Speech Recognition</h1>
-                    <h2 style="font-weight:500;">Microsoft Cognitive Services</h2>
-                </td>
-            </tr>
             <tr>
                 <td><input id="key" type="hidden" size="40" value="50dbceaa8a424c1c89ea9c33d3a4eec0"></td>
             </tr>
             <tr>
-                <td align="right">Language:</td>
                 <td align="left">
                     <select id="languageOptions">
                         <option value="ar-EG">Arabic - EG</option>
@@ -57,10 +44,6 @@
                 <td>
                     <table>
                         <tr>
-                            <td>Results:</td>
-                            <td>Current hypothesis:</td>
-                        </tr>
-                        <tr>
                             <td>
                                 <textarea id="phraseDiv" style="display: inline-block;width:500px;height:200px"></textarea>
                             </td>
@@ -77,6 +60,13 @@
             </tr>
         </table>
     </div>
+
+
+
+
+
+
+
 
     <!-- SDK REFERENCE -->
     <script src="../../distrib/speech.sdk.bundle.js"></script>
@@ -175,6 +165,7 @@
                         break;
                     case "SpeechStartDetectedEvent" :
                         UpdateStatus("Listening_DetectedSpeech_Recognizing");
+                        // event. result is sufficient enough NOTE
                         console.log(JSON.stringify(event.Result)); // check console for other information in result
                         break;
                     case "SpeechHypothesisEvent" :
@@ -253,10 +244,6 @@
             recognitionMode.addEventListener("change", Setup);
 
             startBtn.addEventListener("click", function () {
-                if (key.value == "" || key.value == "YOUR_BING_SPEECH_API_KEY") {
-                    alert("Please enter your Bing Speech subscription key!");
-                    return;
-                }
                 if (inputSource.value === "File") {
                     filePicker.click();
                 } else {
