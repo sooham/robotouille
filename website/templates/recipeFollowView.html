@@ -15,6 +15,11 @@
     </head>
 
   <body>
+    <audio class="hidden" id="wav_filelist">
+        {% for file in wav_files %}
+            <source src="{{url_for('static', filename='wav/' + file)}}">
+        {% endfor %}
+    </audio>
     <div id="loadingModal">
         <i class="fas fa-spinner fa-3x fa-spin"></i>
         <i class="fas fa-step-forward fa-3x"></i>
@@ -37,7 +42,11 @@
                 <div class="row no-gutters">
                    <div class="col">
                        <h3>{{ recipe_name }}</h3>
-                       <p class='card-subtitle text-muted'>from <a href="{{ recipe_url }}" >{{ domain }}</a></p>
+                       <h4 class='text-muted'>from <a href="{{ recipe_url }}" >{{ domain }}</a></h4>
+                       {% if total_time %}
+                       <h4 class='text-muted'>Total time to cook: {{total_time}} minutes.</h4>
+                       {% endif%}
+                       <h4>
                    </div>
                 </div>
                 {% if image %}
@@ -57,7 +66,9 @@
                     -->
                         <p></p>
                         {% if step.length and step.length.number %}
-                        <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock"></i> Time required: {{step.length.number}} {{step.length.unit}} Unspecified</h6>{% endif %}
+                            <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock"></i> Time required: {{step.length.number}} {{step.length.unit}}</h6>
+                        {% endif %}
+
                         {% if step.step %}
                             <p class="card-text">{{step.step}}</p>
                         {% else %}

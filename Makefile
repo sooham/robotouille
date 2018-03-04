@@ -12,5 +12,6 @@ clean:
 	unset FLASK_APP
 	unset FLASK_DEBUG
 	find . -name "*.pyc" | xargs rm -rf 
+	rm -rf ./website/static/wav
 
 .PHONY: all setup run clean

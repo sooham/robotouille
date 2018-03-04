@@ -27,12 +27,10 @@ def process_recipe():
     recipe_json = requests.get(API_URL+"?forceExtraction=false&url="+recipe_url_esc, headers=headers).json()
 
     # create the team input kwargs
-    kwargs = dict()
-    kwargs['recipe_url'] = recipe_url
-    kwargs['recipe_name'] = utils.get_recipe_name(recipe_json)
-    kwargs['domain'] = utils.get_url_domain(recipe_url)
-    kwargs['recipe_steps'] = utils.get_steps(recipe_json)
-    kwargs['image'] = utils.get_image(recipe_json)
+    kwargs = utils.create_template_kwargs(recipe_url, recipe_json)
+
+    # synthesize recipe steps using bing text to speech API
+    kwargs['wav_files'] = utils.synthesize_steps_speech(str(recipe_json['id']), kwargs['recipe_steps'])
 
     return render_template("recipeFollowView.html", **kwargs)
 

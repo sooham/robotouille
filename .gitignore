@@ -2,6 +2,7 @@ bin/*
 include/*
 lib/*
 node_modules
+*.wav
 # ----------------------------------
 
 # Created by https://www.gitignore.io/api/web,linux,macos,python,windows,jupyternotebook
