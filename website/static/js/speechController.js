@@ -10,7 +10,6 @@ $(function() {
         recognition.onresult = function(event) {
             console.log('registered result');
             onresult_cb(event);
-            resultObtained = true;
         };
         recognition.onend = function(event) {
             if (!resultObtained) {
@@ -80,12 +79,15 @@ $(function() {
             console.log('listening for user...');
             setupRecognitionSession(function(event) {
                 console.log(event.results);
-                if (event.results[0][0].transcript.toLowerCase() === "yes") {
+                var input = event.results[0][0].transcript.toLowerCase();
+                if (input === "yes") {
                     state = 'ing';
                     play_next_clip();
-                } else {
+                    resultObtained = true;
+                } else if (input === "no") {
                     state = 'step';
                     $("#misc_step_start")[0].play();
+                    resultObtained = true;
                 }
             });
             recognition.start();
@@ -112,19 +114,30 @@ $(function() {
             // };
             setupRecognitionSession(function(event) {
                 console.log(event.results);
-                if (event.results[0][0].transcript.toLowerCase() === "yes") {
+                var input = event.results[0][0].transcript.toLowerCase();
+                if (input === "yes") {
                     console.log('rewinding one step');
                     idx--;
-                }
-                if (idx >= num_steps) {
-                    console.log('finished the recipe, verbalize it');
-                    // you have finished the recipe
-                    state = 'finished';
-                    $("#misc_finish")[0].play();
-                } else {
-                    play_next_clip();
-                }
-            });
+                    resultObtained = true;
+                    if (idx >= num_steps) {
+                        console.log('finished the recipe, verbalize it');
+                        // you have finished the recipe
+                        state = 'finished';
+                        $("#misc_finish")[0].play();
+                    } else {
+                        play_next_clip();
+                    }
+                } else if (input === "no") {
+                    resultObtained = true;
+                    if (idx >= num_steps) {
+                        console.log('finished the recipe, verbalize it');
+                        // you have finished the recipe
+                        state = 'finished';
+                        $("#misc_finish")[0].play();
+                    } else {
+                        play_next_clip();
+                    }
+                } else {}});
             recognition.start();
         }
 
