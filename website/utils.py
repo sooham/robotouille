@@ -23,6 +23,12 @@ def get_steps(recipe_json):
     instructionList = recipe_json['analyzedInstructions'][0]["steps"]
     return instructionList
 
+def get_ingredients(recipe_json):
+    ing_raw = recipe_json['extendedIngredients']
+    ing_pos = [ing['originalString'] for ing in ing_raw]
+    ing_parts = [(ing['name'], ing['amount'], ing['units']) for ing in ing_raw]
+    return ing_pos, ing_parts
+
 def get_total_time(recipe_json):
     return recipe_json['readyInMinutes'] if 'readyInMinutes' in recipe_json else None
 
@@ -34,9 +40,10 @@ def create_template_kwargs(recipe_url, recipe_json):
     kwargs['recipe_steps'] = get_steps(recipe_json)
     kwargs['image'] = get_image(recipe_json)
     kwargs['total_time'] = get_total_time(recipe_json)
+    kwargs['ing_pos'], kwargs['ing_parts'] = get_ingredients(recipe_json)
     return kwargs
 
-def synthesize_steps_speech(recipe_id, steps_json):
+def synthesize_speech(recipe_id, steps_json, ing_pos):
     tts = Translator('50dbceaa8a424c1c89ea9c33d3a4eec0')
     speech_text = [step_raw['step'] for step_raw in steps_json]
     # TODO: optimize speech
@@ -54,9 +61,15 @@ def synthesize_steps_speech(recipe_id, steps_json):
             if e.errno != errno.EEXIST:
                 raise
 
+        for ing_num in xrange(len(ing_pos)):
+            fname = 'ing_%d.wav' % ing_num
+            with open(wav_root) 
+
+
+
         for step in xrange(len(speech_text)):
             fname = 'step_' + str(step) + '.wav'
-            with open(wav_root + recipe_id + '/' + fname, 'w') as f:
+            with open("%s%s/%s.wav' wav_root + recipe_id + '/' + fname, 'w') as f:
                 f.write(speech_bin[step])
 
     return [recipe_id + '/step_' + str(i) + '.wav' for i in xrange(len(speech_text))]

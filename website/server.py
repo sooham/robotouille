@@ -30,7 +30,7 @@ def process_recipe():
     kwargs = utils.create_template_kwargs(recipe_url, recipe_json)
 
     # synthesize recipe steps using bing text to speech API
-    kwargs['wav_files'] = utils.synthesize_steps_speech(str(recipe_json['id']), kwargs['recipe_steps'])
+    kwargs['wav_files'] = utils.synthesize_speech(str(recipe_json['id']), kwargs['recipe_steps'], kwargs['ing_pos'])
 
     return render_template("recipeFollowView.html", **kwargs)
 

@@ -5,6 +5,7 @@ all: setup run
 
 setup: 
 	pip install -r requirements.txt
+	pip install git+https://github.com/westparkcom/Python-Bing-TTS.git
 run:
 	echo "GOTO https://127.0.0.1:5000"
 	FLASK_APP=$(FLASK_APP) flask run
