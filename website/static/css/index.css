@@ -18,6 +18,18 @@
 }
 
 .appDescription {
-    margin-bottom: 3em;
+    margin-bottom: 3rem;
 }
 
+main {
+    margin-bottom: 3rem;
+}
+
+#ratLogo {
+   width: 100%; 
+}
+
+.stepCard {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>{{ recipe_name }} | Robotouille </title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Stylesheets -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link rel = "stylesheet" href = "{{ url_for('static', filename='css/index.css') }}">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    </head>
+
+  <body>
+    <div id="loadingModal">
+        <i class="fas fa-spinner fa-3x fa-spin"></i>
+        <i class="fas fa-step-forward fa-3x"></i>
+        <i class="fas fa-step-backward fa-3x"></i>
+        <i class="fas fa-stop fa-3x"></i>
+        <i class="fas fa-utensils fa-3x"></i>
+        <i class="fas fa-play fa-3x"></i>
+        <i class="fas fa-circle fa-3x"></i>
+    </div>
+    <nav id="topLevelNavbar" class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Robotouille</a>
+    </nav>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-2">
+                <img id="ratLogo" src="
+                {{ url_for('static', filename='img/robotouille-logo.jpg') }}"/>
+            </div>
+            <div class="col-10">
+                <div class="row no-gutters">
+                   <div class="col">
+                       <h3>{{ recipe_name }}</h3>
+                       <p class='card-subtitle text-muted'>from <a href="{{ recipe_url }}" >{{ domain }}</a></p>
+                   </div>
+                </div>
+                {% if image %}
+                <div class="card stepCard">
+                    <image class="card-img-top" src="{{image}}"></image>
+                </div>
+                {% endif %}
+
+                {% for step in recipe_steps%}
+                <div class="card stepCard">
+                    <div class="card-header">
+                        Step {{step.number}}
+                    </div>
+                    <div class="card-body">
+                        <!--
+                        <h5 class="card-title">Another title</h5>
+                    -->
+                        <p></p>
+                        {% if step.length and step.length.number %}
+                        <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock"></i> Time required: {{step.length.number}} {{step.length.unit}} Unspecified</h6>{% endif %}
+                        {% if step.step %}
+                            <p class="card-text">{{step.step}}</p>
+                        {% else %}
+                            <p class="card-text">No valid step found.</p>
+                        {% endif %}
+                        <!-- <a href="#" class="card-link">Card link</a>-->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer creditsFooter">
+        <div class="container">
+            <small class="text-muted">Created by Intel interns for Hacktech, Pasadena, Los Angeles.</small>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

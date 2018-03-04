@@ -10,6 +10,8 @@
         <link rel = "stylesheet" href = "{{ url_for('static', filename='css/index.css') }}">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     </head>
 
   <body>
@@ -29,7 +31,7 @@
                 </div>
             </div>
             <div class="col-8">
-                <p>Robotouille allows hands and screen free cooking while following recipe instructions. This is done by leveraging recent advances in voice recognition and natural language processing. In other words <code>Robotouille</code> can just read out your recipe to you.</p>
+                <p>Robotouille allows hands and screen free cooking while following recipe instructions. This is done by leveraging recent advances in voice recognition and natural language processing. In other words <code>Robotouille</code> can just read out your recipe.</p>
                 <p>Using <code>Robotouille</code> allows the chef to immerse themselves into their process and cook worry free. Additional benefits include:</p>
                 <ol>
                     <li>Follows voice commands - just talk to it like another human.</li>
@@ -41,7 +43,7 @@
         </div>
         <form action="/recipe" method="get">
             <label for="recipeLink" class="mb-2 mr-sm-2">Recipe Link:</label>
-            <input type="text" name="recipeLink" class="form-control mb-2 mr-sm-2" id="recipeLinkInput" placeholder="https://recipe.com/link/to/recipe">
+            <input type="text" name="recipeLink" class="form-control mb-2 mr-sm-2" id="recipeLinkInput">
             <button type="submit" class="btn btn-primary mb-2">Follow Recipe</button>
         </form>
     </main>
@@ -51,11 +53,11 @@
             <small class="text-muted">Created by Intel interns for Hacktech, Pasadena, Los Angeles.</small>
         </div>
     </footer>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="js/recipeScroller.js") }}"></script>
   </body>
 </html>
