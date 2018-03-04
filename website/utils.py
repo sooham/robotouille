@@ -48,6 +48,7 @@ def synthesize_speech(recipe_id, steps_json, ing_pos):
     speech_text = [step_raw['step'] for step_raw in steps_json]
     # TODO: optimize speech
     speech_bin = [tts.speak(step_raw, "en-US", "Female", "riff-16khz-16bit-mono-pcm") for step_raw in speech_text]
+    ing_bin = [tts.speak(ing_raw, "en-US", "Female", "riff-16khz-16bit-mono-pcm") for ing_raw in ing_pos]
 
     # TODO: Do unhardcode path, it is relative to calling PWD
     wav_root = "./website/static/wav/"
@@ -61,18 +62,23 @@ def synthesize_speech(recipe_id, steps_json, ing_pos):
             if e.errno != errno.EEXIST:
                 raise
 
+        wav_list = []
+
         for ing_num in xrange(len(ing_pos)):
             fname = 'ing_%d.wav' % ing_num
-            with open(wav_root) 
-
-
+            wav_list.append('%s/%s' % (recipe_id, fname))
+            with open("%s%s/%s.wav" % (wav_root, recipe_id, fname)):
+                f.write(ing_bin[ing_num])
 
         for step in xrange(len(speech_text)):
-            fname = 'step_' + str(step) + '.wav'
-            with open("%s%s/%s.wav' wav_root + recipe_id + '/' + fname, 'w') as f:
+            fname = 'step_%s.wav' % str(step)
+            wav_list.append('%s/%s' % (recipe_id, fname))
+            with open("%s%s/%s.wav" % (wav_root, recipe_id, fname), 'w') as f:
                 f.write(speech_bin[step])
 
-    return [recipe_id + '/step_' + str(i) + '.wav' for i in xrange(len(speech_text))]
+        return wav_list
+    else:
+        return
 
 
 
