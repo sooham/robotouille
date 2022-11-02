@@ -26,7 +26,7 @@
   "author": "Microsoft",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-bump": "^2.8.0",
     "gulp-git": "^2.2.0",
     "gulp-minify": "0.0.15",
