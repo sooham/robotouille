@@ -37,7 +37,7 @@
     "source-map-loader": "^0.2.3",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2",
-    "webpack-stream": "^4.0.0"
+    "webpack-stream": "^7.0.0"
   },
   "scripts": {
     "prepublishOnly": "npm install & gulp build",
